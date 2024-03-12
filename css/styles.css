@@ -1,0 +1,52 @@
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(75, 14, 154, 1) 35%, rgba(0, 212, 255, 1) 100%);
+
+}
+
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+    /* Fondo blanco para el contenedor del formulario */
+    border-radius: 8px;
+    /* Bordes redondeados para el contenedor del formulario */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Sombra suave para el contenedor */
+}
+
+.form-input {
+    background: none;
+    border: none;
+    border-bottom: 2px solid #333;
+    /* Línea más definida para los campos de entrada */
+    margin-bottom: 20px;
+    width: 100%;
+    color: #333;
+    /* Color oscuro para el texto */
+}
+
+.form-input::placeholder {
+    color: #666;
+    /* Color más claro para los placeholders */
+}
+
+.form-button {
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(75, 14, 154, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    border: none;
+    padding: 10px;
+    width: 100%;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    /* Bordes redondeados para el botón */
+    margin-top: 20px;
+    /* Espacio adicional antes del botón */
+}
