@@ -5,12 +5,39 @@ require 'db_connect.php';
 // Iniciar sesión para usar variables de sesión
 session_start();
 
+//Definimos variables para mensajes de error
+$usuarioErr = $passwordErr = $error = "";
+
 // Comprobar si el formulario de login ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Asignar valores a variables
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
+    //Validar nombre de usuario
+    if (empty($_POST['usuario'])){
+    $usuarioErr = "El nombre de usuario es requerido.";
+    } 
+    
+     else {
+        $usuario = test_input($_POST['usuario']);
+        //Validar si el nombre de usuario contiene solo letras y números 
+        if (!preg_match("/^[a-zA-Z]*$/", $usuario)) {
+            $usuarioErr = "Solo se permiten letras en el usuario."
+        }
+    }
 
+    //Validar contraseña
+    if (empty($_POST['password'])){
+        $passwordErr = "La contraseña es requerida."
+    } 
+    
+     else {
+        $password = test_input($_POST['password']);
+        //Validar máximo decaracteres para password
+        if (strlen($password) > 10) {
+            $passwordErr = "La contraseña debe contener como máximo 10 caracteres.";
+        }
+    }
+
+    //Verificación de credenciales 
+    if (empty($usuarioErr) && empty($passwordErr)) {
     // Validar credenciales del usuario
     $sql = "SELECT id FROM usuarios WHERE usuario = ? AND password = ?";
     if ($stmt = $mysqli->prepare($sql)) {
@@ -32,3 +59,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 $mysqli->close();
+
+//Función para limpiar los datos de entrada
+function test_input($data) {
+    $data = trim($data);
+    $data = stripcslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
