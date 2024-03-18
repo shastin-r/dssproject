@@ -13,26 +13,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Validar nombre de usuario
     if (empty($_POST['usuario'])){
     $usuarioErr = "El nombre de usuario es requerido.";
-    } 
-    
-     else {
+    } else {
         $usuario = test_input($_POST['usuario']);
-        //Validar si el nombre de usuario contiene solo letras y números 
+        // Validar si el nombre de usuario contiene solo letras
         if (!preg_match("/^[a-zA-Z]*$/", $usuario)) {
-            $usuarioErr = "Solo se permiten letras en el usuario."
+            $usuarioErr = "Solo se permiten letras en el nombre de usuario.";
         }
     }
-
     //Validar contraseña
-    if (empty($_POST['password'])){
-        $passwordErr = "La contraseña es requerida."
-    } 
-    
-     else {
+    if (empty($_POST['password'])) {
+        $passwordErr = "La contraseña es requerida.";
+    } else {
         $password = test_input($_POST['password']);
-        //Validar máximo decaracteres para password
+        // Validar longitud máxima de contraseña
         if (strlen($password) > 10) {
-            $passwordErr = "La contraseña debe contener como máximo 10 caracteres.";
+            $passwordErr = "La contraseña debe tener máximo 10 caracteres.";
         }
     }
 
@@ -66,5 +61,6 @@ function test_input($data) {
     $data = stripcslashes($data);
     $data = htmlspecialchars($data);
     return $data;
+}
 }
 ?>
