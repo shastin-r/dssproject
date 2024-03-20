@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Inicio</title>
+  <link rel="stylesheet" href="CSS/estilo.css" />
+  <!-- Font Awesome Cdn Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li class="active">
+                <a href="#">
+                   <i class="fas fa-home"></i>
+                   <span>Inicio</span> 
+                </a>
+            </li>
+            <li>
+                <a href="AgregarSucursal.html">
+                   <i class="fas fa-hand-holding-usd"></i>
+                   <span>Agregar Sucursal</span> 
+                   <!--Se modifica la tabla sucursal para un nuevo registro-->
+                </a>
+            </li>
+            <li>
+                <a href="Vermovimientos.php">
+                   <i class="fas fa-arrow-down"></i>
+                   <span>Ver movimientos</span> 
+                   <!--Basicamente es una vista de la tabla llamada Movimientos-->
+                </a>
+            </li>
+            <li class="cerrar">
+                <a href="#">
+                   <i class="fas fa-sign-out-alt"></i>
+                   <span>Cerrar sesión</span> 
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="contenido">
+        <div class="header--wrapper">
+            <div class="titulo">
+                <span>Inicio</span>
+                <h2>Banco UDB</h2>
+            </div>
+            <div class="info">
+                <div class="saludo">
+                    <h1>Bienvenido Usuario</h1>
+                </div>
+                <img src="img/usuario.png" alt="usuario">
+            </div>
+        </div>
+
+
+        <div class="contenedor-cuentas">
+            <h1 class="presentacion">Tus cuentas</h1>
+            <div class="cuentas-wrapper">
+               
+                <div class="cuentas--tarjetas ligth-red">
+                    <div class="header-carta">
+                        <div class="monto">
+                            <span class="num">Monto</span>
+                            <span class="valor">$500</span>
+                        </div>
+                        <i class="fas fa-dollar-sign icon dark-red"></i>
+                    </div>
+                    <span class="detalle-carta">**** **** **** 3484</span>
+                </div>
+                
+
+                <div class="cuentas--tarjetas ligth-blue">
+                    <div class="header-carta">
+                        <div class="monto">
+                            <span class="num">Monto</span>
+                            <span class="valor">$500</span>
+                        </div>
+                        <i class="fas fa-dollar-sign icon dark-blue"></i>
+                    </div>
+                    <span class="detalle-carta">**** **** **** 3484</span>
+                </div>
+
+                <div class="cuentas--tarjetas ligth-green">
+                    <div class="header-carta">
+                        <div class="monto">
+                            <span class="num">Monto</span>
+                            <span class="valor">$500</span>
+                        </div>
+                        <i class="fas fa-dollar-sign icon dark-green"></i>
+                    </div>
+                    <span class="detalle-carta">**** **** **** 3484</span>
+                </div>   
+            </div>
+        </div>
+
+
+        <div class="tabla">
+            <h3 class="titulo2"> Ultimos movimientos</h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Acción</th>
+                            <th>Sucursal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        
+                            
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+</body>

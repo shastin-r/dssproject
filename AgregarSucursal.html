@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicio 1</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/Complemento.css">
+  <link rel="stylesheet" href="CSS/estilo.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+</head>
+
+<body>
+
+<div class="sidebar">
+        <div class="logo"></div>
+        <ul class="menu">
+            <li>
+                <a href="inicio.html">
+                   <i class="fas fa-home"></i>
+                   <span>Inicio</span> 
+                </a>
+            </li>
+            <li class="active">
+                <a href="AgregarSucursal.html">
+                   <i class="fas fa-hand-holding-usd"></i>
+                   <span>Agregar Sucursal</span> 
+                   <!--Se modifica la tabla sucursal para un nuevo registro-->
+                </a>
+            </li>
+            <li>
+                <a href="Vermovimientos.php">
+                   <i class="fas fa-arrow-down"></i>
+                   <span>Ver movimientos</span> 
+                   <!--Basicamente es una vista de la tabla llamada Movimientos-->
+                </a>
+            </li>
+            <li class="cerrar">
+                <a href="#">
+                   <i class="fas fa-sign-out-alt"></i>
+                   <span>Cerrar sesión</span> 
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="contenido">
+        <div class="header--wrapper">
+            <div class="titulo">
+                <span>Inicio</span>
+                <h2>Banco UDB</h2>
+            </div>
+            <div class="info">
+                <div class="saludo">
+                    <h1>Bienvenido Usuario</h1>
+                </div>
+                <img src="img/usuario.png" alt="usuario">
+            </div>
+        </div>
+
+  <div class="container mt-4">
+    <form class="form" action="Insert.php" method="POST">
+      <div class="form-group">
+
+        <label for="numero1">Ingrese el nombre de sucursal:</label>
+        <input type="text" id="numero1" name="numero1" class="form-control" />
+
+        <label for="numero2">Ingrese los otros campos de la sucursal</label>
+        <input type="text" id="numero2" name="numero2" class="form-control" />
+
+      </div>
+      <button type="submit" id="enviar" name="submit" value="Enviar" class="btn btn-primary submit">Enviar</button>
+    </form>
+  </div>
+
+</body>
