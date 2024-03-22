@@ -11,20 +11,20 @@ $usuarioErr = $passwordErr = $error = "";
 // Comprobar si el formulario de login ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Validar nombre de usuario
-    if (empty($_POST['usuario'])){
+    if (empty($_POST['Usuario'])){
     $usuarioErr = "El nombre de usuario es requerido.";
     } else {
-        $usuario = test_input($_POST['usuario']);
+        $usuario = test_input($_POST['Usuario']);
         // Validar si el nombre de usuario contiene solo letras
         if (!preg_match("/^[a-zA-Z]*$/", $usuario)) {
             $usuarioErr = "Solo se permiten letras en el nombre de usuario.";
         }
     }
     //Validar contraseña
-    if (empty($_POST['password'])) {
+    if (empty($_POST['Password'])) {
         $passwordErr = "La contraseña es requerida.";
     } else {
-        $password = test_input($_POST['password']);
+        $password = test_input($_POST['Password']);
         // Validar longitud máxima de contraseña
         if (strlen($password) > 10) {
             $passwordErr = "La contraseña debe tener máximo 10 caracteres.";
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Verificación de credenciales 
     if (empty($usuarioErr) && empty($passwordErr)) {
     // Validar credenciales del usuario
-    $sql = "SELECT id FROM usuarios WHERE usuario = ? AND password = ?";
+    $sql = "SELECT id FROM usuarios WHERE Usuario = ? AND password = ?";
     if ($stmt = $mysqli->prepare($sql)) {
         $stmt->bind_param("ss", $usuario, $password);
         $stmt->execute();
@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verificar si el usuario existe y la contraseña es correcta
         if ($stmt->num_rows == 1) {
             // El usuario existe, iniciar sesión
-            $_SESSION['usuario'] = $usuario;
+            $_SESSION['Usuario'] = $usuario;
             // Redirigir al dashboard
-            header("location: dashboard.php");
+            header("location: inicio.html");
         } else {
             // Usuario o contraseña incorrectos
             $error = "El nombre de usuario o la contraseña no son correctos.";
