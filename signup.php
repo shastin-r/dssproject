@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     //Validar apellidos
     if (empty($_POST['Apellidos'])) {
-        $apellidosErr = "Los apellidos es requerido.";
+        $apellidosErr = "Los apellidos son requeridos.";
     } else {
         $apellidos = test_input($_POST['Apellidos']);
         //Validar que los apellidos sean solo letras

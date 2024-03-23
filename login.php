@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Verificación de credenciales 
     if (empty($usuarioErr) && empty($passwordErr)) {
     // Validar credenciales del usuario
-    $sql = "SELECT id FROM usuarios WHERE Usuario = ? AND password = ?";
+    $sql = "SELECT id FROM usuarios WHERE Usuario = ? AND Password = ?";
     if ($stmt = $mysqli->prepare($sql)) {
         $stmt->bind_param("ss", $usuario, $password);
         $stmt->execute();
