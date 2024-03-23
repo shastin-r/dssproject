@@ -74,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     //Si no hay errores, proceder a la inserción en la bdd
-    if (empty($nombresErr) && empty($apellidosErr) && empty($correoErr) && empty($usuarioErr) && empty($duiErr) && empty($passwordErr)) {
 
         // Insertar nuevo usuario en la base de datos
         $sql = "INSERT INTO usuarios (Nombres, Apellidos, Correo, Usuario, DUI, Password) VALUES (?, ?, ?, ?, ?, ?)";
@@ -83,13 +82,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
             echo "Registro exitoso.";
             $stmt->close();
+            // Redirigir al login
+
+            header("location: login.html");
         } else {
             echo "Error al registrar.";
         }
     }
-}
-
-$mysqli->close();
 
 //Función para limpiar los datos de entrada 
 function test_input($data)

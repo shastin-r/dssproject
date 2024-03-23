@@ -5,14 +5,14 @@ require 'db_connect.php';
 // Iniciar sesión para usar variables de sesión
 session_start();
 
-//Definimos variables para mensajes de error
+// Definir variables para mensajes de error
 $usuarioErr = $passwordErr = $error = "";
 
-// Comprobar si el formulario de login ha sido enviado
+// Comprobar si el formulario de inicio de sesión ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //Validar nombre de usuario
-    if (empty($_POST['Usuario'])){
-    $usuarioErr = "El nombre de usuario es requerido.";
+    // Validar nombre de usuario
+    if (empty($_POST['Usuario'])) {
+        $usuarioErr = "El nombre de usuario es requerido.";
     } else {
         $usuario = test_input($_POST['Usuario']);
         // Validar si el nombre de usuario contiene solo letras
@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $usuarioErr = "Solo se permiten letras en el nombre de usuario.";
         }
     }
-    //Validar contraseña
+    
+    // Validar contraseña
     if (empty($_POST['Password'])) {
         $passwordErr = "La contraseña es requerida.";
     } else {
@@ -31,36 +32,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    //Verificación de credenciales 
-    if (empty($usuarioErr) && empty($passwordErr)) {
-    // Validar credenciales del usuario
-    $sql = "SELECT id FROM usuarios WHERE Usuario = ? AND Password = ?";
-    if ($stmt = $mysqli->prepare($sql)) {
-        $stmt->bind_param("ss", $usuario, $password);
-        $stmt->execute();
-        $stmt->store_result();
+    // Verificar si no hay errores de validación
 
-        // Verificar si el usuario existe y la contraseña es correcta
-        if ($stmt->num_rows == 1) {
-            // El usuario existe, iniciar sesión
-            $_SESSION['Usuario'] = $usuario;
-            // Redirigir al dashboard
-            header("location: inicio.html");
+        // Validar credenciales del usuario
+        $sql = "SELECT id FROM usuarios WHERE Usuario = ? AND Password = ?";
+        if ($stmt = $mysqli->prepare($sql)) {
+            $stmt->bind_param("ss", $usuario, $password);
+            $stmt->execute();
+            $stmt->store_result();
+
+            // Verificar si el usuario existe y la contraseña es correcta
+            if ($stmt->num_rows == 1) {
+                // El usuario existe, iniciar sesión
+                $_SESSION['Usuario'] = $usuario;
+                // Redirigir al dashboard
+                header("location: inicio.html");
+                exit(); // Importante: detener la ejecución del script después de la redirección
+            } else {
+                // Usuario o contraseña incorrectos
+                $error = "El nombre de usuario o la contraseña no son correctos.";
+            }
+            $stmt->close();
         } else {
-            // Usuario o contraseña incorrectos
-            $error = "El nombre de usuario o la contraseña no son correctos.";
+            // Error en la preparación de la consulta
+            $error = "Error en la preparación de la consulta.";
         }
-        $stmt->close();
-    }
+    
 }
+
 $mysqli->close();
 
-//Función para limpiar los datos de entrada
+// Función para limpiar los datos de entrada
 function test_input($data) {
     $data = trim($data);
-    $data = stripcslashes($data);
+    $data = stripslashes($data);
     $data = htmlspecialchars($data);
     return $data;
 }
-}
-?>
+?>|
