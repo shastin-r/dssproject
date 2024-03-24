@@ -1,14 +1,23 @@
 <?php
-// Parámetros de conexión a la base de datos
+// Datos de conexión a la base de datos
 $servername = "localhost"; // El servidor donde se encuentra la base de datos
-$username = "root"; // nombre de usuario de la base de datos
-$password = ""; // contraseña de la base de datos
-$dbname = "dssproyecto"; //  nombre de base de datos
+$username = "root"; // Nombre de usuario de la base de datos
+$password = ""; // Contraseña de la base de datos
+$dbname = "dssproyecto"; // Nombre de la base de datos
 
-// Crear conexión
-$mysqli = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar conexión
-if ($mysqli->connect_error) {
-    die("Conexión fallida: " . $mysqli->connect_error);
+try {
+    // Crear conexión PDO
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    
+    // Configurar el modo de error PDO para que lance excepciones
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+   // echo "Conexión exitosa"; // Solo para fines de prueba, puedes eliminar esta línea si lo deseas
+} catch(PDOException $e) {
+    // En caso de error, mostrar mensaje de error
+    die("Conexión fallida: " . $e->getMessage());
 }
+
+// Cerrar conexión (al final de tu script, cuando ya no necesites la conexión)
+// $conn = null;
+?>

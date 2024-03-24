@@ -21,10 +21,51 @@
         <div class="labellog">
             <p>¿No tienes una cuenta? <a href="signup.html">Regístrate aquí</a></p>
         </div>
+        <div class="error">
+        </div>
     </div>
 
-    
-    
+
+    <script>
+        // Función para recuperar el valor de una variable de la URL
+        function getQueryParam(variable) {
+            // Obtener la parte de la URL después del símbolo '?'
+            var query = window.location.search.substring(1);
+            // Separar los pares clave=valor
+            var vars = query.split("&");
+            // Recorrer los pares para buscar la variable deseada
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                // Si la clave coincide, devolver el valor
+                if (pair[0] === variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            // Si no se encuentra la variable, devolver null
+            return null;
+        }
+
+        // Ejemplo de uso
+        var variable1 = getQueryParam('error');
+
+        // Hacer algo con las variables recuperadas
+        if (variable1 !== null) {
+            console.log("El valor de variable1 es: " + variable1);
+            // Obtener elementos por su clase 'error'
+            let elementosError = document.getElementsByClassName("error");
+
+            // Verificar si se encontraron elementos con la clase 'error'
+            if (elementosError.length > 0) {
+                // Establecer el contenido HTML de todos los elementos con la clase 'error'
+                for (var i = 0; i < elementosError.length; i++) {
+                    elementosError[i].innerHTML = variable1;
+                }
+            }
+
+        } else {
+            console.log("Las variables no están definidas en la URL.");
+        }
+    </script>
 </body>
 
 </html>
