@@ -76,9 +76,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Si no hay errores, proceder a la inserción en la bdd
     if (empty($nombresErr) && empty($apellidosErr) && empty($correoErr) && empty($usuarioErr) && empty($duiErr) && empty($passwordErr)) {
 
-        // Insertar nuevo usuario en la bdd
+        // Insertar nuevo usuario en la base de datos
         $sql = "INSERT INTO usuarios (Nombres, Apellidos, Correo, Usuario, DUI, Password) VALUES (?, ?, ?, ?, ?, ?)";
-        if ($stmt = $mysqli->prepare($sql)) {
+        if ($stmt = $conn->prepare($sql)) {
             $stmt->bind_param("ssssss", $nombres, $apellidos, $correo, $usuario, $dui, $password);
             $stmt->execute();
             echo "Registro exitoso.";
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$mysqli->close();
+mysqli_close($conn);
 
 //Función para limpiar los datos de entrada 
 function test_input($data)

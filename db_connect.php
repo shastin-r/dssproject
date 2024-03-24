@@ -12,12 +12,11 @@ try {
     // Configurar el modo de error PDO para que lance excepciones
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-   // echo "Conexión exitosa"; // solo para fines de prueba cuando ya esté todo xD
 } catch(PDOException $e) {
     // En caso de error, mostrar mensaje de error
     die("Conexión fallida: " . $e->getMessage());
 }
 
-// Cerrar conexión (al final de tu script, cuando ya no se necesite la conexión)
+// Cerrar conexión 
 // $conn = null;
 ?>
