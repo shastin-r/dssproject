@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // El usuario existe, iniciar sesión
                 $_SESSION['Usuario'] = $usuario;
 
-                // Cerrar conexión (al final de tu script, cuando ya no necesites la conexión)
+                // Cerrar conexión (al final del script, cuando ya no se necesite la conexión)
                 $conn = null;
                 // Redirigir al dashboard
                 header("location: inicio.html");

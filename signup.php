@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //Si no hay errores, proceder a la inserción en la bdd
     if (empty($nombresErr) && empty($apellidosErr) && empty($correoErr) && empty($usuarioErr) && empty($duiErr) && empty($passwordErr)) {
 
-        // Insertar nuevo usuario en la base de datos
+        // Insertar nuevo usuario en la bdd
         $sql = "INSERT INTO usuarios (Nombres, Apellidos, Correo, Usuario, DUI, Password) VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->bind_param("ssssss", $nombres, $apellidos, $correo, $usuario, $dui, $password);
